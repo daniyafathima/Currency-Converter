@@ -8,7 +8,6 @@ const CurrencyConverter = () => {
   const [toCurrency, settoCurrency] = useState("INR");
   const [convertedAmount, setconvertedAmount] = useState(null);
   const [converting, setConverting] = useState(false);
-
   const fetchCurrencies = async () => {
     try {
       const res = await fetch("https://api.frankfurter.app/currencies");
@@ -18,14 +17,11 @@ const CurrencyConverter = () => {
       console.log("Error fetching", error);
     }
   };
-
   useEffect(() => {
     fetchCurrencies();
   }, []);
-
   const convertCurrency = async () => {
-    if (!amount) return;
-
+    if (!amount) return; 
     setConverting(true);
     try {
       const res = await fetch(
@@ -39,13 +35,11 @@ const CurrencyConverter = () => {
       setConverting(false);
     }
   };
-
   const swapCurrencies = () => {
     const temp = fromCurrency;
     setfromCurrency(toCurrency);
     settoCurrency(temp);
   };
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f4f6fb] px-4">
       <div className="w-full max-w-lg bg-white rounded-3xl p-8 shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-gray-100">
